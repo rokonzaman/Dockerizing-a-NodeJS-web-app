@@ -4,7 +4,7 @@ pipeline {
             label 'kmaster'
         }
       }
-    trigger {
+    triggers {
         pollSCM('* * * * *')
     }
     environment{
