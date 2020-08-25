@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nodejs
-        image: kworker3.rokon.local:5000/django:tagVersion
+        image: kworker3.rokon.local:5000/nodejs:tagVersion
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
