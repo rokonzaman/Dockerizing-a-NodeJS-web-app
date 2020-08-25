@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs
+spec:
+  selector:
+    matchLabels:
+      app: nodejs
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+      - name: nodejs
+        image: kworker3.rokon.local:5000/django:tagVersion
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: nodejs-pod-port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs
+  labels:
+    app: nodejs
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: nodejs-pod-port
+    nodePort: 30001
+    protocol: TCP
+  selector:
+    app: nodejs
